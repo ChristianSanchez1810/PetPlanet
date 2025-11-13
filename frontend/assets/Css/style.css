@@ -28,17 +28,10 @@ nav li{
     display: flex;
 }
 
-.nav-logo{
-    width: 1rem;
-    height: 1rem;
-    padding: 1;
+nav .nav img {
+    height: 40px;
+    width: auto; 
 }
-
-nav img{
-    display: flex;  
-    height: 6rem;
-}
-
 
 header{
     height: 70vh;
@@ -154,9 +147,32 @@ footer p{
     margin-top: 2rem;
 }
 
+.menu-hamburguesa{
+    display: none;
+    cursor: pointer;
+}
+
+.menu-hamburguesa svg{
+    width: 32px;
+    height: 32px;
+    stroke: #f4f4f4;
+}
+
 @media(max-width: 768px){
     .productos-contenedor{
         grid-template-columns: 1fr;
     }
+    .nav-enlaces{
+        display: none;
+    }
+    .menu-hamburguesa{
+        display: block;
+    }
+    header h1 {
+        font-size: 2rem; 
+    }
+    .categorias-contenedor {
+        flex-direction: column;
+        align-items: center;  
+    }
 }
-
