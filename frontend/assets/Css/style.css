@@ -26,6 +26,7 @@ nav li{
 }
 .nav-enlaces{
     display: flex;
+    gap: 1rem;
 }
 
 nav .nav img {
@@ -130,6 +131,11 @@ nav .nav img {
 .dot.activo {
     background-color: #f4f4f4;
 }
+
+.enlace-carrusel{
+    color: #f4f4f4;
+}
+
 .destacados h2{
     text-align: center;
     margin-bottom: 2rem;
@@ -150,6 +156,10 @@ nav .nav img {
 
 .tarjeta-producto img{
     width: 100%;
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 20px;
 }
 
 .tarjeta-producto h3{
@@ -222,6 +232,57 @@ footer p{
     stroke: #f4f4f4;
 }
 
+.pagina-productos{
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+aside{
+    padding: 1rem;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+}
+.contenedor-detalle{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+.detalle-imagen img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 14px;
+    max-width: 500px;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.detalle-info h1{
+    font-size: 2.5rem;
+}
+.precio{
+    font-size: 1.5rem;
+    color: #490fad;
+    font-weight: bold;
+}
+.detalle-info p{
+    line-height: 1.6;
+    color: #aaa;
+}
+.comprar{
+    padding: 1rem 3rem;
+    background-color: dimgray;
+    color: #f4f4f4;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    
+}
+
 @media(max-width: 768px){
     .productos-contenedor{
         grid-template-columns: 1fr;
@@ -238,5 +299,11 @@ footer p{
     .categorias-contenedor {
         flex-direction: column;
         align-items: center;  
+    }
+    .pagina-productos{
+        grid-template-columns: 1fr;
+    }
+    .contenedor-detalle{
+        grid-template-columns: 1fr;
     }
 }
