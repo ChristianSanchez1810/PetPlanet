@@ -5,7 +5,10 @@
     text-decoration: none;
     list-style: none;
 }
-
+body{
+color: #f4f4f4;
+font-family: sans-serif;
+}
 nav{
     display: flex;
     justify-content: space-between;
@@ -263,6 +266,7 @@ aside{
 }
 .detalle-info h1{
     font-size: 2.5rem;
+    color: #f4f4f4;
 }
 .precio{
     font-size: 1.5rem;
@@ -282,7 +286,164 @@ aside{
     border-radius: 10px;
     
 }
+.fondo-espacial {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../img/fondo/espacio4.jpg");
+    z-index: -10; 
+    overflow: hidden;
+}
+.star {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    opacity: .8;
+    animation: shine 2s infinite alternate;
+}
+.estrella-fugaz {
+    position: absolute;
+    top: 50px;
+    left: -100px;
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,1));
+    border-radius: 50%;
+    
+    animation: fugaz 6s infinite; 
+}
+.contenedor-carrito{
+    width: 90%;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 2rem;
+    margin: 2rem auto;
+    max-width:1200px ;
+    align-items: start;
+    text-align: center;
+}
+.carrito-items table{
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    border-radius: 15px;
+    }
 
+.carrito-items th{
+    background-color: #490fad;
+    color: #f4f4f4;
+    padding: 1rem;
+    text-align: left;
+}
+.carrito-items td{
+    color: #eee;
+    padding: 1fr;
+    vertical-align: middle;
+    border-bottom: 2px lightgrey solid;
+}
+.item-info{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.item-info img{
+width: 60px;
+height: 80px;
+object-fit: cover;
+border-radius: 10px;
+}
+.carrito-resumen{
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 2rem;
+    position: sticky;
+    top: 2rem;
+}
+.carrito-resumen h3{
+    margin-top: 0;
+}
+.resumen-fila{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+.carrito-items input{
+    width: 50px;
+    padding: 5px;
+    text-align: center;
+}
+.btn-checkout{
+    border: none;
+    background-color: #00d4ff;
+    padding: 1rem;
+    cursor: pointer;
+}
+.resumen-total{
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5rem;
+}
+.contenedor-login{
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.contenedor-login input{
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #f4f4f4;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    margin-top: 10px;
+    border: lightskyblue;
+}
+.registro-link{
+    margin-top: 1rem;
+}
+
+.formulario-login{
+    width: 400px;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 2rem;
+    border-radius: 14px;
+    border-color: rgba(0, 0, 0, 0.6);
+    text-align: center;
+}
+.texto-formulario{
+margin-top: 10px;
+margin-bottom: 10px;
+}
+
+
+@keyframes shine {
+    0% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+@keyframes fugaz {
+    0% {
+        transform: translate(0, 0) rotate(45deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    20% {
+        transform: translate(400px, 400px) rotate(45deg);
+        opacity: 0; 
+    }
+    100% {
+        transform: translate(400px, 400px) rotate(45deg);
+        opacity: 0;
+    }
+}
 @media(max-width: 768px){
     .productos-contenedor{
         grid-template-columns: 1fr;
@@ -305,5 +466,8 @@ aside{
     }
     .contenedor-detalle{
         grid-template-columns: 1fr;
+    }
+    .contenedor-carrito{
+    grid-template-columns: 1fr;
     }
 }
