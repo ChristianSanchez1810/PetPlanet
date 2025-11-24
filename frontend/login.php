@@ -4,13 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito</title>
+    <title>PetPlanet</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
-
-        <div class="fondo-espacial">
+    <div class="fondo-espacial">
         
 <div class="star" style="top: 3%; left: 5%;"></div>
 <div class="star" style="top: 6%; left: 12%;"></div>
@@ -81,97 +80,28 @@
 <div class="star" style="top: 93%; left: 68%;"></div>
 <div class="star" style="top: 96%; left: 82%;"></div>
 <div class="star" style="top: 97%; left: 98%;"></div>
-    <div class="estrella-fugaz"></div>
+
+        <div class="estrella-fugaz"></div>
     </div>
 
-    <nav>
-        <div class="nav">
-            <a href="index.html"><img src="assets/img/logo.png" alt="Logo"></a>
-        </div>
-        <div class="nav-enlaces">
-            <ul>
-                <li><a href="productos.html">Productos</a></li>
-                <li><a href="#">Perros</a></li>
-                <li><a href="#">Gatos</a></li>
-            </ul>
-
-            <div>
-                <ul>
-                    <li><a href="carrito.html">Carrito</a></li>
-                    <li><a href="#">Login</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
+    <?php include 'includes/header.php'; ?>
+    
     <main>
-        <div class="contenedor-carrito">
-            <section class="carrito-items">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Productos</th>
-                            <th>Precio</th>
-                            <th>Cantidad</th>
-                            <th>Total</th>
-                            <th>Borrar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="item-info">
-                                    <img src="assets/img/Sección_Perros_Canis_Major/Cable_Tether_Andrómeda.jpg"
-                                        alt="Imagen">
-                                    <p>Juguete Mordedor</p>
-                                </div>
-                            </td>
-                            <td>$13.00</td>
-                            <td>
-                                <input type="number" value="1" min="1">
-                            </td>
-                            <td>$13.00</td>
-                            <td><a href="#" class="btn-borrar">X</a></td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <div class="item-info">
-                                    <img src="assets/img/Sección_Hámsters_Pequeñas_Constelaciones/Anillo_de_Saturno_Silent_Spin.png"
-                                        alt="Imagen">
-                                    <p>Hamster Wheel</p>
-                                </div>
-                            </td>
-                            <td>$25.00</td>
-                            <td>
-                                <input type="number" value="1" min="1">
-                            </td>
-                            <td>$25.00</td>
-                            <td><a href="#" class="btn-borrar">X</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-            <aside class="carrito-resumen">
-                <h3>Resumen del Pedido</h3>
-
-                <div class="resumen-fila">
-                    <p>Subtotal</p>
-                    <p>$38.00</p>
+        <div class="contenedor-login">
+            <form action="" class="formulario-login">
+                <h2 class="texto-formulario">Iniciar Sesión</h2>
+                <div class="campo-login">
+                    <label for="email" class="texto-formulario">Correo</label>
+                    <input type="email" id="email" placeholder="tu@email.com">
                 </div>
-
-                <div class="resumen-fila">
-                    <p>Envío</p>
-                    <p>Gratis</p>
+                <div class="campo-login">
+                    <label for="password" class="texto-formulario">Contraseña</label>
+                    <input type="password" id="password" placeholder="*******">
                 </div>
+                <button type="submit" class="btn-checkout">Ingresar</button>
 
-                <div class="resumen-total">
-                    <p>Total</p>
-                    <p>$38.00</p>
-                </div>
-
-                <button class="btn-checkout">Proceder al Pago</button>
-            </aside>
+                <p class="registro-link">¿No tienes cuenta? <a href="#">Regístrate Aquí</a></p>
+            </form>
         </div>
     </main>
 

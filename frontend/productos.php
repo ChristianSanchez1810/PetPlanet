@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -9,37 +10,8 @@
 </head>
 
 <body>
-    <nav>
-        <div class="nav">
-            <a href="index.html"><img src="assets/img/logo.png" alt="Logo"></a>
-        </div>
-        <div class="menu-hamburguesa">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" class="size-6">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
-            </svg>
+    <?php include 'includes/header.php'; ?>
 
-        </div>
-        <div class="nav-enlaces">
-            <ul>
-                <li><a href="productos.html">Productos</a></li>
-                <li><a href="#">Perros</a></li>
-                <li><a href="#">Gatos</a></li>
-            </ul>
-
-            <div>
-                <ul>
-                    <li><a href="carrito.html">Carrito</a></li>
-                    <li><a href="#">Login</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <header>
-
-    </header>
 
     <main>
         <div class="pagina-productos">
