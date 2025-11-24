@@ -21,7 +21,13 @@
         <div>
             <ul>
                 <li><a href="carrito.php">Carrito</a></li>
+                <?php
+                if(isset($_SESSION['usuario_id'])):?>
+              <li><a href="#">Hola, <?php echo $_SESSION['usuario_nombre'];?></a></li>
+                <li><a href="logout.php" style=color:#ff4d4d>Salir</a></li>
+                <?php else: ?>
                 <li><a href="login.php">Login</a></li>
+                <?php endif; ?>
             </ul>
         </div>
     </div>

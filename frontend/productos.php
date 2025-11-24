@@ -1,4 +1,9 @@
-
+<?php
+session_start();
+include 'includes/db.php';
+$query = "SELECT * FROM productos";
+$resultado = mysqli_query($conn, $query);
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -46,26 +51,17 @@
             <section class="galeria-productos">
                 <h2>Catalogo Completo</h2>
                 <div class="productos-contenedor">
-                    <div class="tarjeta-producto">
-                        <img src="assets/img/Sección_Perros_Canis_Major/Capullo_Interestelar.jpg" alt="Capullo_Interestelar">
-                        <h3>Capullo Interestelar</h3>
-                        <p>$13</p>
-                        <a href="producto-detalle.html">Ver producto</a>
-                    </div>
-                    <div class="tarjeta-producto">
-                        <img src="assets/img/Sección_Hámsters_Pequeñas_Constelaciones/Bio_Domo_Modular_Hera.png" alt="Imagen hamster">
-                        <h3>Juguete Hamster</h3>
-                        <p>$13</p>
-                        <a href="producto-detalle.html">Ver producto</a>
-                    </div>
-                    <div class="tarjeta-producto">
-                        <img src="assets/img/Sección_Gatos_Felis_Minor/Cápsula_de_Hibernación.png" alt="Juguete Gato">
-                        <h3>Juguete Gato</h3>
-                        <p>$13</p>
-                        <a href="producto-detalle.html">Ver producto</a>
-                    </div>
+                    <?php while ($row = mysqli_fetch_assoc($resultado)) { ?>
+                        <div class="tarjeta-producto">
+                            <img src="<?php echo $row['imagen']; ?>">
+                            <h3><?php echo $row['nombre']; ?></h3>
+                            <p>$<?php echo $row['precio']; ?></p>
+                            <a href="producto-detalle.php?id=<?php echo $row["id"]; ?>">Ver producto</a>
+                        </div>
+                    <?php } ?>
                 </div>
-            </section>
+        </div>
+        </section>
         </div>
     </main>
 

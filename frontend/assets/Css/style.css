@@ -5,10 +5,6 @@
     text-decoration: none;
     list-style: none;
 }
-body{
-color: black;
-font-family: sans-serif;
-}
 nav{
     display: flex;
     justify-content: space-between;
@@ -241,10 +237,16 @@ footer p{
     gap: 2rem;
     align-items: start;
 }
-aside{
+.pagina-productos h3{
+    color: black;
+}
+.pagina-productos aside{
     padding: 1rem;
     background-color: #f4f4f4;
     border-radius: 8px;
+}
+.pagina-productos li{
+    color: black;
 }
 .contenedor-detalle{
     display: grid;
@@ -364,9 +366,12 @@ border-radius: 10px;
     padding: 2rem;
     position: sticky;
     top: 2rem;
+    color: #ffffff;
+
 }
 .carrito-resumen h3{
     margin-top: 0;
+    color: #ffffff;
 }
 .resumen-fila{
     display: flex;
@@ -381,8 +386,15 @@ border-radius: 10px;
 .btn-checkout{
     border: none;
     background-color: #00d4ff;
-    padding: 1rem;
+    padding: 1rem 3rem;
     cursor: pointer;
+    border-radius: 40px;
+    margin-top: 1rem;
+}
+.btn-checkout:hover{
+    background-color: #009ec3;
+    color: #f4f4f4;
+    transition: 500ms;
 }
 .resumen-total{
     display: flex;
@@ -394,6 +406,7 @@ border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #f4f4f4;
 }
 .contenedor-login input{
     width: 100%;
