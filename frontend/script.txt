@@ -1,0 +1,38 @@
+DROP DATABASE IF EXISTS petplanet_db;
+CREATE DATABASE petplanet_db;
+USE petplanet_db;
+
+CREATE TABLE categorias (
+id INT PRIMARY KEY AUTO_INCREMENT,
+nombre VARCHAR(100) NOT NULL);
+
+CREATE TABLE usuarios(
+id INT PRIMARY KEY AUTO_INCREMENT,
+nombre VARCHAR(100),
+correo VARCHAR(100),
+password VARCHAR(100),
+rol VARCHAR(100));
+
+CREATE TABLE productos(
+id INT PRIMARY KEY AUTO_INCREMENT,
+nombre VARCHAR(100),
+descripcion TEXT,
+precio DECIMAL(10,2),
+stock INT,
+imagen VARCHAR(255),
+id_categoria INT,
+FOREIGN KEY(id_categoria) REFERENCES categorias(id) ON UPDATE CASCADE);
+
+INSERT INTO categorias (nombre) VALUES
+('Perros'),
+('Gatos'),
+('Hamsters');
+
+INSERT INTO productos (nombre, descripcion, precio, stock, imagen, id_categoria)
+VALUES
+('Bruma Acuática Aqua Nova', 'Tomadero para gatos', 15.00, 5, 'assets/img/Sección_Gatos_Felis_Minor/Bruma_Acuática_Aqua_Nova.png', 2),
+('Anillo de Saturno Silent Spin', 'Rueda para Hamster', 20.00, 2, 'assets/img/Sección_Hámsters_Pequeñas_Constelaciones/Anillo_de_Saturno_Silent_Spin.png', 3),
+('Cable Tether Andrómeda', 'Correa para perro', 5.00, 10, 'assets/img/Sección_Perros_Canis_Major/Cable_Tether_Andrómeda.jpg', 1);
+
+INSERT INTO usuarios (nombre, correo, password, rol) 
+VALUES ('Administrador', 'admin@petplanet.com', '123456', 'admin');
