@@ -9,7 +9,7 @@ nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #161817;
+    background-color: #000000;
     padding: 1rem;
 }
 nav ul{
@@ -297,6 +297,7 @@ footer p{
     background-image: url("../img/fondo/espacio4.jpg");
     z-index: -10; 
     overflow: hidden;
+    color: #f4f4f4;
 }
 .star {
     position: absolute;
@@ -305,7 +306,7 @@ footer p{
     background: white;
     border-radius: 50%;
     opacity: .8;
-    animation: shine 2s infinite alternate;
+    animation: shine 500ms infinite alternate;
 }
 .estrella-fugaz {
     position: absolute;
@@ -316,7 +317,7 @@ footer p{
     background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,1));
     border-radius: 50%;
     
-    animation: fugaz 6s infinite; 
+    animation: fugaz 6s ease-in-out; 
 }
 .contenedor-carrito{
     width: 90%;
@@ -433,11 +434,21 @@ border-radius: 10px;
 margin-top: 10px;
 margin-bottom: 10px;
 }
-
-
 @keyframes shine {
-    0% { opacity: 0.3; }
-    100% { opacity: 1; }
+    0% {
+        transform: scale(1);
+        opacity: .3;
+    }
+
+    50% {
+        transform: scale(1.8);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1.5);
+        opacity: .3;
+    }
 }
 
 @keyframes fugaz {
