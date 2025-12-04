@@ -1,0 +1,167 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #FFFFFF;
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    background-image: url("imagenes1/espacio4.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+
+.estrellas-contenedor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200vh;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    opacity: .8;
+    animation: shine 2s infinite ease-in-out;
+}
+
+@keyframes shine {
+    0% { transform: scale(1); opacity: .3; }
+    50% { transform: scale(1.8); opacity: 1; }
+    100% { transform: scale(1.5); opacity: .3; }
+}
+
+
+
+nav {
+    background: rgba(0, 0, 0, 0.40);
+    padding: 14px 20px;
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    border-bottom: 3px solid #FFA500;
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    backdrop-filter: blur(4px);
+}
+
+nav a {
+    text-decoration: none;
+    color: #FFA500;
+    font-size: 18px;
+    font-weight: 700;
+    transition: color 0.25s ease, text-shadow 0.25s ease;
+}
+
+nav a:hover {
+    color: #9BCE42;
+    text-shadow: 0 0 8px rgba(155, 206, 66, 0.6);
+}
+
+
+.page {
+    max-width: 1200px;
+    margin: 26px auto;
+    padding: 18px;
+}
+
+.hero {
+    background: rgba(0, 0, 0, 0.45);
+    border-radius: 10px;
+    padding: 28px;
+    text-align: center;
+    border: 3px solid #FFA500;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+.hero h1 {
+    font-size: 28px;
+    color: #FFFFFF;
+}
+
+.cat-title {
+    font-size: 26px;
+    text-align: center;
+    color: #FFA500;
+    margin-bottom: 20px;
+    margin-top: 25px;
+}
+
+
+
+.card {
+    width: 260px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 14px;
+    border: 3px solid #FFA500;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.6);
+    overflow: hidden;
+    transition: transform .45s ease, box-shadow .45s ease;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+}
+
+
+.card:hover {
+    transform: translateY(-12px) scale(1.08) rotateX(6deg) rotateY(-6deg);
+    box-shadow: 
+        0 10px 25px rgba(255,165,0,0.6),
+        0 0 20px rgba(155,206,66,0.6),
+        0 0 28px rgba(77,167,212,0.6);
+}
+
+.card .img {
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card .img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.meta {
+    padding: 15px;
+    text-align: center;
+}
+
+.nombre {
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+}
+
+.precio {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 6px;
+    color: #9BCE42;
+}
+
+.productos {
+    display: flex;
+    justify-content: center;
+}
+
+
+.pie {
+    text-align: center;
+    padding: 20px;
+    color: #FFFFFF;
+}
