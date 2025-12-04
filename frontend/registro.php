@@ -1,7 +1,32 @@
-<?php session_start();
+<?php
+session_start();
+require 'includes/db.php';
 
-$total_compra = 0;
+$error = '';
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    
+    $nombre = mysqli_real_escape_string($conn, $_POST['nombre']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $password = $_POST['password'];
+    $password_hashed=password_hash($password,PASSWORD_DEFAULT);
+
+    if (!empty($nombre) && !empty($email) && !empty($password)) {
+        
+        $query = "INSERT INTO usuarios (nombre, correo, password, rol) 
+                  VALUES ('$nombre', '$email', '$password_hashed', 'cliente')";
+
+        if (mysqli_query($conn, $query)) {
+            header('Location: login.php');
+            exit;
+        } else {
+            $error = "Error al registrar: " . mysqli_error($conn);
+        }
+    } else {
+        $error = "Por favor llena todos los campos.";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -10,12 +35,11 @@ $total_compra = 0;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito</title>
+    <title>PetPlanet</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
-
     <div class="fondo-espacial">
 
         <div class="star" style="top: 3%; left: 5%;"></div>
@@ -87,84 +111,31 @@ $total_compra = 0;
         <div class="star" style="top: 93%; left: 68%;"></div>
         <div class="star" style="top: 96%; left: 82%;"></div>
         <div class="star" style="top: 97%; left: 98%;"></div>
+
         <div class="estrella-fugaz"></div>
     </div>
 
     <?php include 'includes/header.php'; ?>
 
     <main>
-        <div class="contenedor-carrito">
-            <section class="carrito-items">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Productos</th>
-                            <th>Precio</th>
-                            <th>Cantidad</th>
-                            <th>Total</th>
-                            <th>Borrar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php if (isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])): ?>
-
-                            <?php foreach ($_SESSION['carrito'] as $id => $producto):
-                                $subtotal = $producto['precio'] * $producto['cantidad'];
-                                $total_compra += $subtotal;
-                                ?>
-
-                                <tr>
-                                    <td>
-                                        <div class="item-info">
-                                            <img src="<?php echo $producto['imagen']; ?>" alt="img">
-                                            <p><?php echo $producto['nombre']; ?></p>
-                                        </div>
-                                    </td>
-                                    <td>$<?php echo $producto['precio']; ?></td>
-                                    <td>
-                                        <input type="number" value="<?php echo $producto['cantidad']; ?>" min="1"
-                                            style="width: 50px;">
-                                    </td>
-                                    <td>$<?php echo $subtotal; ?></td>
-                                    <td>
-                                        <a href="borrar_carrito.php?id=<?php echo $id; ?>" class="btn-borrar">X</a>
-                                    </td>
-                                </tr>
-
-                            <?php endforeach; ?>
-
-                        <?php else: ?>
-                            <tr>
-                                <td colspan="5" style="text-align:center; padding: 2rem;">Tu carrito está vacío</td>
-                            </tr>
-                        <?php endif; ?>
-                    </tbody>
-                </table>
-            </section>
-            <aside class="carrito-resumen">
-                <h3>Resumen del Pedido</h3>
-
-                <div class="resumen-fila">
-                    <p>Subtotal</p>
-                    <p>$<?php echo $total_compra ?></p>
+        <div class="contenedor-login">
+            <form action="registro.php" method="post" class="formulario-login">
+                <h2 class="texto-formulario">Registrarse</h2>
+                <div class="campo-registro">
+                    <label for="nombre" class="texto-formulario">Nombre</label>
+                    <input type="text" name="nombre" id="nombre" placeholder="Tu nombre">
                 </div>
-
-                <div class="resumen-fila">
-                    <p>Envío</p>
-                    <p>Gratis</p>
+                <div class="campo-registro">
+                    <label for="email" class="texto-formulario">Correo</label>
+                    <input type="email" id="email" placeholder="tu@email.com" name="email">
                 </div>
-
-                <div class="resumen-total">
-                    <p>Total</p>
-                    <p>$<?php echo $total_compra; ?></p>
+                <div class="campo-registro">
+                    <label for="password" class="texto-formulario">Contraseña</label>
+                    <input type="password" id="password" placeholder="*******" name="password">
+                    
                 </div>
-
-                <?php if (isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])): ?>
-
-                    <a href="procesar_compra.php" class="btn-checkout">Proceder al Pago</a>
-
-                <?php endif; ?>
-            </aside>
+                <button type="submit" class="btn-registro">Registrarse</button>
+            </form>
         </div>
     </main>
 

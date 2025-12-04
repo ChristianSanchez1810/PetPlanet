@@ -6,22 +6,28 @@ $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $correo = mysqli_real_escape_string($conn, $_POST['email']); // "email" es el name de tu input
     $password = $_POST['password'];
-    $query = "SELECT * FROM usuarios WHERE correo='$email' AND password='$password'";
+    $query = "SELECT * FROM usuarios WHERE correo = '$correo'";
     $resultado = mysqli_query($conn, $query);
 
     if (mysqli_num_rows($resultado) === 1) {
         $usuario = mysqli_fetch_assoc($resultado);
 
-        $_SESSION['usuario_id'] = $usuario['id'];
-        $_SESSION['usuario_nombre'] = $usuario['nombre'];
-        $_SESSION['usuario_rol'] = $usuario['rol'];
+        if (password_verify($password, $usuario['password'])) {
 
-        header('Location: index.php');
-        exit;
+            $_SESSION['usuario_id'] = $usuario['id'];
+            $_SESSION['usuario_nombre'] = $usuario['nombre'];
+            $_SESSION['usuario_rol'] = $usuario['rol'];
+
+            header('Location: index.php');
+            exit;
+
+        } else {
+            $error = "La contraseña es incorrecta.";
+        }
     } else {
-        $error = 'Correo o contraseña incorrectos.';
+        $error = "El correo no existe.";
     }
 }
 ?>
@@ -131,7 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 <button type="submit" class="btn-checkout">Ingresar</button>
 
-                <p class="registro-link">¿No tienes cuenta? <a href="#">Regístrate Aquí</a></p>
+                <p class="registro-link">¿No tienes cuenta? <a href="registro.php">Regístrate Aquí</a></p>
             </form>
         </div>
     </main>
