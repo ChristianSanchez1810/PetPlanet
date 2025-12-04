@@ -153,7 +153,8 @@
                     <li><a href="#">Sobre nosotros</a></li>
                     <li><a href="#">Contacto</a></li>
                 </ul>
-                <div>                <h4>Redes Sociales</h4>
+                <div>
+                    <h4>Redes Sociales</h4>
                 <ul>
                     <li><a href="#">Facebook</a></li>
                     <li><a href="#">Instagram</a></li>
