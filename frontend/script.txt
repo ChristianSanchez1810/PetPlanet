@@ -36,5 +36,3 @@ VALUES
 
 INSERT INTO usuarios (nombre, correo, password, rol) 
 VALUES ('Administrador', 'admin@petplanet.com', '123456', 'admin');
-
-.
