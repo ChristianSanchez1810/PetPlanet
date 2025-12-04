@@ -5,6 +5,7 @@ if (isset($_POST['btn_agregar'])) {
     $nombre = $_POST['nombre'];
     $precio = $_POST['precio'];
     $imagen = $_POST['imagen'];
+    $cantidad=$_POST['cantidad'];
 
     $item = array('id' => $id, 'nombre' => $nombre, 'precio' => $precio, 'imagen' => $imagen, 'cantidad' => $cantidad);
     $_SESSION['carrito'][$id] = $item;
