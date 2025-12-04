@@ -94,19 +94,22 @@ $resultado = mysqli_query($conn, $query);
     <?php include 'includes/header.php'; ?>
 
     <main>
-        <div class="productos">
 
-          <article class="card">
-             <?php while ($row = mysqli_fetch_assoc($resultado)) { ?>
-              <div class="img">
-                <img src="<?php echo $row['imagen'];?>">
-              </div>
-              <div class="meta">
-                <p class="nombre"><?php echo $row['nombre']; ?></p>
-                <p class="precio"><?php echo $row['precio']; ?></p>
-              </div>
-              <?php } ?>
-          </article>
+        <h2 class="titulo-productos">Productos</h2>
+        <div class="productos">
+            <?php while ($row = mysqli_fetch_assoc($resultado)) { ?>
+                <a href="index.php">
+                <article class="card">
+                    <div class="img">
+                        <img src="<?php echo $row['imagen']; ?>">
+                    </div>
+                    <div class="meta">
+                        <p class="nombre"><?php echo $row['nombre']; ?></p>
+                        <p class="precio"><?php echo $row['precio']; ?></p>
+                    </div>
+                </article>
+                </a>
+            <?php } ?>
         </div>
     </main>
 
