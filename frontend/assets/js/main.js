@@ -15,33 +15,26 @@ document.addEventListener("DOMContentLoaded", () => {
         slides[indiceActivo].classList.add("activa");
         dots[indiceActivo].classList.add("activo");
     }
-
     function siguienteSlide() {
         let nuevoIndice = (indiceActivo + 1) % slides.length;
         mostrarSlide(nuevoIndice);
     }
-
     function anteriorSlide() {
         let nuevoIndice = (indiceActivo - 1 + slides.length) % slides.length;
         mostrarSlide(nuevoIndice);
     }
-    
     nextBtn.addEventListener("click", () => {
         siguienteSlide();
     });
-
     prevBtn.addEventListener("click", () => {
         anteriorSlide();
     });
-
     dots.forEach((dot, indice) => {
         dot.addEventListener("click", () => {
             mostrarSlide(indice);
         });
     });
-    
     setInterval(() => {
         siguienteSlide();
-    }, 5000); 
-
+    }, 5000);
 });
