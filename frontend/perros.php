@@ -1,0 +1,75 @@
+<html>
+<head>
+  <title>Perros - PetPlanet</title>
+  <link rel="stylesheet" href="estilos1.css">
+</head>
+
+<body>
+
+<div class="estrellas-contenedor" id="estrellas"></div>
+
+<script>
+  const totalStars = 80;
+
+  const contenedor = document.getElementById("estrellas");
+
+  for (let i = 0; i < totalStars; i++) {
+      const star = document.createElement("div");
+      star.classList.add("star");
+
+      star.style.top = Math.random() * 100 + "%";
+      star.style.left = Math.random() * 100 + "%";
+
+      const size = Math.random() * 3 + 2; 
+      star.style.width = size + "px";
+      star.style.height = size + "px";
+
+      star.style.animationDuration = (Math.random() * 1 + 1) + "s";
+
+      contenedor.appendChild(star);
+  }
+</script>
+
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="perros.html">Perros</a>
+    <a href="gatos.html">Gatos</a>
+    <a href="hamster.html">Hámster</a>
+</nav>
+
+
+<div class="page">
+
+  <header class="hero">
+    <h1>PRODUCTOS PARA PERROS</h1>
+  </header>
+
+  <main class="catalogo">
+
+      <h2 class="cat-title">Perros</h2>
+
+      <div class="productos">
+
+          <article class="card">
+              <div class="img">
+                <img src="ImagenesPetPlanet/Sección Perros (Canis Major)/Arnés Antigravedad Modelo-X.png">
+              </div>
+              <div class="meta">
+                <p class="nombre">Arnés Antigravedad Modelo-X</p>
+                <p class="precio">$350</p>
+              </div>
+          </article>
+
+      </div>
+
+  </main>
+
+  <footer class="pie">
+    <p>© 2025 PetPlanet</p>
+  </footer>
+
+</div>
+
+</body>
+</html>

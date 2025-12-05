@@ -10,9 +10,9 @@
     <div class="nav-enlaces" id="lista-enlaces">
         <ul>
             <li><a href="productos.php">Productos</a></li>
-            <li><a href="#">Perros</a></li>
-            <li><a href="#">Gatos</a></li>
-            <li><a href="#">Hamster</a></li>
+            <li><a href="perros.php">Perros</a></li>
+            <li><a href="hamster.php">Gatos</a></li>
+            <li><a href="gatos.php">Hamster</a></li>
         </ul>
 
         <div>

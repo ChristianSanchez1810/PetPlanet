@@ -228,6 +228,7 @@ $total_compra = 0;
             }
 
             function actualizarSesionPHP(id, cantidad) {
+
                 fetch('actualizar_carrito.php', {
                     method: 'POST',
                     headers: {
