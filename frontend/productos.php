@@ -98,7 +98,7 @@ $resultado = mysqli_query($conn, $query);
         <h2 class="titulo-productos">Productos</h2>
         <div class="productos">
             <?php while ($row = mysqli_fetch_assoc($resultado)) { ?>
-                <a href="index.php">
+                <a href="producto-detalle.php?id=<?php echo $row['id'];?>">
                 <article class="card">
                     <div class="img">
                         <img src="<?php echo $row['imagen']; ?>">
