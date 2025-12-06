@@ -1,7 +1,7 @@
-<?php 
+<?php
 session_start();
 // 1. INCLUIMOS LA CONEXIÓN A LA BD (Necesaria para consultar el stock)
-include 'includes/db.php'; 
+include 'includes/db.php';
 
 $total_compra = 0;
 ?>
@@ -48,14 +48,14 @@ $total_compra = 0;
 
                                     $query_stock = "SELECT stock FROM productos WHERE id = $id";
                                     $res_stock = mysqli_query($conn, $query_stock);
-                                    
-                                    
+
+
                                     if ($row_stock = mysqli_fetch_assoc($res_stock)) {
                                         $stock_disponible = $row_stock['stock'];
                                     } else {
                                         $stock_disponible = 0;
                                     }
-                                    
+
                                     ?>
                                     <tr class="fila-producto">
                                         <td>
@@ -70,16 +70,13 @@ $total_compra = 0;
                                         </td>
 
                                         <td>
-                                            <input type="number" 
-                                                   class="input-cantidad" 
-                                                   data-id="<?php echo $id; ?>"
-                                                   value="<?php echo $producto['cantidad']; ?>" 
-                                                   min="1" 
-                                                   max="<?php echo $stock_disponible; ?>" 
-                                                   style="width: 50px;">
-                                            
+                                            <input type="number" class="input-cantidad" data-id="<?php echo $id; ?>"
+                                                value="<?php echo $producto['cantidad']; ?>" min="1"
+                                                max="<?php echo $stock_disponible; ?>" style="width: 50px;">
+
                                             <br>
-                                            <small style="color: #ccc; font-size: 0.8rem;">Stock: <?php echo $stock_disponible; ?></small>
+                                            <small style="color: #ccc; font-size: 0.8rem;">Stock:
+                                                <?php echo $stock_disponible; ?></small>
                                         </td>
 
                                         <td class="lbl-subtotal">$<?php echo $subtotal; ?></td>
@@ -130,7 +127,7 @@ $total_compra = 0;
             document.addEventListener("DOMContentLoaded", function () {
 
                 const inputs = document.querySelectorAll('.input-cantidad');
-                
+
                 inputs.forEach(input => {
                     input.addEventListener('change', function () {
                         actualizarMontos(this);
@@ -145,10 +142,10 @@ $total_compra = 0;
                     const precio = parseFloat(fila.querySelector('.precio-unitario').dataset.precio);
                     let cantidad = parseInt(input.value);
                     const idProducto = input.dataset.id;
-                    
+
                     const maxStock = parseInt(input.getAttribute('max'));
 
-                    
+
                     if (cantidad < 1) {
                         cantidad = 1;
                         input.value = 1;
@@ -158,13 +155,13 @@ $total_compra = 0;
                     if (cantidad > maxStock) {
                         alert("¡Ups! Solo tenemos " + maxStock + " unidades disponibles.");
                         cantidad = maxStock;
-                        input.value = maxStock; 
+                        input.value = maxStock;
                     }
 
 
                     const nuevoSubtotal = precio * cantidad;
                     fila.querySelector('.lbl-subtotal').innerText = '$' + nuevoSubtotal.toFixed(2);
-                    
+
                     recalcularTotalCarrito();
                     actualizarSesionPHP(idProducto, cantidad);
                 }
@@ -179,7 +176,7 @@ $total_compra = 0;
                     document.getElementById('resumen-subtotal').innerText = '$' + totalGeneral.toFixed(2);
                     document.getElementById('resumen-total').innerText = '$' + totalGeneral.toFixed(2);
                 }
-                
+
                 function actualizarSesionPHP(id, cantidad) {
                     fetch('actualizar_carrito.php', {
                         method: 'POST',
@@ -188,8 +185,8 @@ $total_compra = 0;
                         },
                         body: `id=${id}&cantidad=${cantidad}`
                     })
-                    .then(response => console.log('Carrito actualizado en servidor'))
-                    .catch(error => console.error('Error:', error));
+                        .then(response => console.log('Carrito actualizado en servidor'))
+                        .catch(error => console.error('Error:', error));
                 }
             });
         </script>
