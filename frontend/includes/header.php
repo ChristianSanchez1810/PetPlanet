@@ -11,8 +11,8 @@
         <ul>
             <li><a href="productos.php">Productos</a></li>
             <li><a href="perros.php">Perros</a></li>
-            <li><a href="hamster.php">Gatos</a></li>
-            <li><a href="gatos.php">Hamster</a></li>
+            <li><a href="gatos.php">Gatos</a></li>
+            <li><a href="hamsters.php">Hamster</a></li>
         </ul>
 
         <div>

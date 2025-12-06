@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php session_start();
+include 'includes/db.php';
+$query = "SELECT * FROM productos";
+$resultado = mysqli_query($conn, $query); ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -52,37 +55,40 @@
 
         <main>
             <section class="destacados">
-                <h2>Productos Destacados</h2>
-                <div class="productos-contenedor">
-                    <div class="tarjeta-producto">
-                        <img src="assets/img/juguete-perro.jpg" alt="Juguete mordedor para perro">
-                        <h3>Juguete Mordedor Resistente</h3>
-                        <p>$13</p>
-                        <a href="producto-detalle.html">Ver producto</a>
-                    </div>
-
-                    <div class="tarjeta-producto">
-                        <img src="assets/img/juguete-gato.jpg" alt="Juguete mordedor para gato">
-                        <h3>Juguete Mordedor Resistente</h3>
-                        <p>$10</p>
-                        <a href="producto-detalle.html">Ver producto</a>
-                    </div>
+                <h2 class="hero">Productos Destacados</h2>
+                <div class="productos">
+                    <?php while ($row = mysqli_fetch_assoc($resultado)) { ?>
+                        <a href="producto-detalle.php?id=<?php echo $row['id']; ?>">
+                            <article class="card">
+                                <div class="img">
+                                    <img src="<?php echo $row['imagen']; ?>">
+                                </div>
+                                <div class="meta">
+                                    <p class="nombre"><?php echo $row['nombre']; ?></p>
+                                    <p class="precio"><?php echo $row['precio']; ?></p>
+                                </div>
+                            </article>
+                        </a>
+                    <?php } ?>
                 </div>
             </section>
-
+            
             <section class="categorias">
-                <h2>Comprar por mascota</h2>
+                <h2 class="hero">Comprar por mascota</h2>
                 <div class="categorias-contenedor">
                     <a href="#" class="tarjeta-categoria">
-                        <h3>Perros</h3>
+                        <h3>Perro</h3>
                     </a>
                     <a href="#" class="tarjeta-categoria">
-                        <h3>Gatos</h3>
+                        <h3>Gato</h3>
+                    </a>
+                    <a href="#" class="tarjeta-categoria">
+                        <h3>Hamster</h3>
                     </a>
                 </div>
             </section>
         </main>
-
+        
         <footer>
             <div>
                 <ul>
@@ -99,6 +105,7 @@
             </div>
             <p>Todos los derechos reservados</p>
         </footer>
+    </div>
         <script src="assets/js/main.js"></script>
         <script src="assets/js/estrellas.js"></script>
 </body>

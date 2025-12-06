@@ -1,75 +1,66 @@
-<html>
+<?php
+session_start();
+include 'includes/db.php';
+$query = "SELECT * FROM productos WHERE id_categoria=1";
+$resultado = mysqli_query($conn, $query);
+?>
+<!DOCTYPE html>
+<html lang="es">
+
 <head>
-  <title>Perros - PetPlanet</title>
-  <link rel="stylesheet" href="estilos1.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perros</title>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
-
-<div class="estrellas-contenedor" id="estrellas"></div>
-
-<script>
-  const totalStars = 80;
-
-  const contenedor = document.getElementById("estrellas");
-
-  for (let i = 0; i < totalStars; i++) {
-      const star = document.createElement("div");
-      star.classList.add("star");
-
-      star.style.top = Math.random() * 100 + "%";
-      star.style.left = Math.random() * 100 + "%";
-
-      const size = Math.random() * 3 + 2; 
-      star.style.width = size + "px";
-      star.style.height = size + "px";
-
-      star.style.animationDuration = (Math.random() * 1 + 1) + "s";
-
-      contenedor.appendChild(star);
-  }
-</script>
+    <div class="fondo-espacial">
+        <div class="estrellas-contenedor" id="estrellas">
+            <div class="estrella-fugaz"></div>
+        </div>
 
 
-<nav>
-    <a href="index.html">Inicio</a>
-    <a href="perros.html">Perros</a>
-    <a href="gatos.html">Gatos</a>
-    <a href="hamster.html">Hámster</a>
-</nav>
+        <?php include 'includes/header.php'; ?>
 
+        <main>
+            <div class="page">
+                <h2 class="hero">Perros</h2>
+                <div class="productos">
+                    <?php while ($row = mysqli_fetch_assoc($resultado)) { ?>
+                        <a href="producto-detalle.php?id=<?php echo $row['id']; ?>">
+                            <article class="card">
+                                <div class="img">
+                                    <img src="<?php echo $row['imagen']; ?>">
+                                </div>
+                                <div class="meta">
+                                    <p class="nombre"><?php echo $row['nombre']; ?></p>
+                                    <p class="precio"><?php echo $row['precio']; ?></p>
+                                </div>
+                            </article>
+                        </a>
+                    <?php } ?>
+                </div>
+        </main>
 
-<div class="page">
-
-  <header class="hero">
-    <h1>PRODUCTOS PARA PERROS</h1>
-  </header>
-
-  <main class="catalogo">
-
-      <h2 class="cat-title">Perros</h2>
-
-      <div class="productos">
-
-          <article class="card">
-              <div class="img">
-                <img src="ImagenesPetPlanet/Sección Perros (Canis Major)/Arnés Antigravedad Modelo-X.png">
-              </div>
-              <div class="meta">
-                <p class="nombre">Arnés Antigravedad Modelo-X</p>
-                <p class="precio">$350</p>
-              </div>
-          </article>
-
-      </div>
-
-  </main>
-
-  <footer class="pie">
-    <p>© 2025 PetPlanet</p>
-  </footer>
-
-</div>
-
+        <footer>
+            <div>
+                <ul>
+                    <li><a href="#">Sobre nosotros</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+                <div>
+                    <h4>Redes Sociales</h4>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            <p>Todos los derechos reservados</p>
+        </footer>
+    </div>
+    <script src="assets/js/estrellas.js"></script>
 </body>
+
 </html>
