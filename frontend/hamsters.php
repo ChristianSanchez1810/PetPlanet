@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'includes/db.php';
-$query = "SELECT * FROM productos";
+$query = "SELECT * FROM productos WHERE id_categoria=3";
 $resultado = mysqli_query($conn, $query);
 ?>
 <!DOCTYPE html>
@@ -10,7 +10,7 @@ $resultado = mysqli_query($conn, $query);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos Universales</title>
+    <title>Hamsters</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
@@ -25,7 +25,7 @@ $resultado = mysqli_query($conn, $query);
 
         <main>
             <div class="page">
-                <h2 class="hero">Productos</h2>
+                <h2 class="hero">Hamsters</h2>
                 <div class="productos">
                     <?php while ($row = mysqli_fetch_assoc($resultado)) { ?>
                         <a href="producto-detalle.php?id=<?php echo $row['id']; ?>">

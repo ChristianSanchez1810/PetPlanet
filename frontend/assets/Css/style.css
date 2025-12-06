@@ -5,6 +5,11 @@
   text-decoration: none;
   list-style: none;
 }
+main {
+    flex: 1; 
+    position: relative;
+    z-index: 10;
+}
 nav {
   display: flex;
   justify-content: space-between;
@@ -64,6 +69,7 @@ nav img {
   text-align: center;
   position: relative;
   overflow: hidden;
+  z-index: 10;
 }
 
 .carrusel-slides {
@@ -95,6 +101,12 @@ nav img {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+.descripcion{
+  color: #f4f4f4;
+}
+.precio-producto{
+  color: #f4f4f4;
 }
 
 .slide-1 {
@@ -229,6 +241,8 @@ nav img {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 2rem;
   justify-content: center;
+  margin-bottom: 2rem;
+  margin-top: 4rem;
 }
 
 .titulo-productos {
@@ -302,27 +316,31 @@ nav img {
 }
 
 .categorias-contenedor {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
   gap: 2rem;
 }
 
 .tarjeta-categoria {
   width: 300px;
   height: 200px;
-  background-color: #eee;
+  background:linear-gradient(to bottom,#490fad,#160434);
   border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #490fad;
+  color: #f4f4f4;
 }
 
 footer {
-  background-color: #161817;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 2px solid #ffa500;
   color: #f4f4f4;
-  padding: 2rem;
-  margin-top: 3rem;
+  padding: 3rem 2rem;
+  margin-top: 2rem;
   position: relative;
   z-index: 10;
 }
@@ -330,16 +348,33 @@ footer {
 footer > div {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 footer a {
   color: #f4f4f4;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+footer a:hover {
+  color: #ffa500;
+  text-shadow: 0 0 5px rgba(255, 165, 0, 0.5);
 }
 
 footer p {
   text-align: center;
   margin-top: 2rem;
+}
+footer ul {
+  list-style: none;
+  padding: 0;
+}
+footer li {
+  margin-bottom: 10px;
 }
 
 .menu-hamburguesa {
@@ -411,7 +446,13 @@ footer p {
   display: block;
   margin: 0 auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 3px solid #ffa500;
 }
+.detalle-info{
+  display: flex;
+  flex-direction: column;
+}
+
 .detalle-info h1 {
   font-size: 2.5rem;
   color: #f4f4f4;
@@ -423,7 +464,6 @@ footer p {
 }
 .detalle-info p {
   line-height: 1.6;
-  color: #aaa;
 }
 .comprar {
   padding: 1rem 3rem;
@@ -439,6 +479,8 @@ footer p {
   background-image: url("../img/fondo/espacio4.jpg");
   color: #f4f4f4;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 .star {
   position: absolute;
@@ -475,13 +517,33 @@ footer p {
   align-items: start;
   text-align: center;
 }
+.contenedor-carrito td{
+  padding: 2rem;
+}
 .carrito-items table {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  border-collapse: separate;
+  border-collapse: collapse;
   border-spacing: 0;
   overflow: hidden;
   border-radius: 15px;
+  table-layout: fixed;
+  border-bottom: 3px solid #490fad;
+}
+.carrito-items th:nth-child(1) {
+  width: 45%;
+}
+.carrito-items th:nth-child(2) {
+  width: 15%;
+}
+.carrito-items th:nth-child(3) {
+  width: 15%;
+}
+.carrito-items th:nth-child(4) {
+  width: 15%;
+}
+.carrito-items th:nth-child(5) {
+  width: 10%;
 }
 
 .carrito-items th {
@@ -495,6 +557,10 @@ footer p {
   padding: 1fr;
   vertical-align: middle;
   border-bottom: 2px lightgrey solid;
+}
+.carrito-items tbody tr {
+    background-color: rgba(0, 0, 0, 0.6); 
+    backdrop-filter: blur(5px); 
 }
 .item-info {
   display: flex;
@@ -514,6 +580,8 @@ footer p {
   position: sticky;
   top: 2rem;
   color: #ffffff;
+  z-index: 10;
+  border-radius: 1rem;
 }
 .carrito-resumen h3 {
   margin-top: 0;
@@ -566,6 +634,10 @@ footer p {
 .registro-link {
   margin-top: 1rem;
 }
+.registro-link a:hover{
+  color: #f4f4f4;
+  transition: 0.5s;
+}
 
 .formulario-login {
   width: 400px;
@@ -581,6 +653,15 @@ footer p {
   margin-bottom: 10px;
 }
 
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
 
 @keyframes shine {
   0% {
@@ -630,8 +711,8 @@ footer p {
     font-size: 2rem;
   }
   .categorias-contenedor {
-    flex-direction: column;
-    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
   }
   .pagina-productos {
     grid-template-columns: 1fr;
@@ -654,4 +735,3 @@ footer p {
     transform: translateY(50%) rotate(-45deg);
   }
 }
-
