@@ -43,22 +43,7 @@ $resultado = mysqli_query($conn, $query);
                 </div>
         </main>
 
-        <footer>
-            <div>
-                <ul>
-                    <li><a href="#">Sobre nosotros</a></li>
-                    <li><a href="#">Contacto</a></li>
-                </ul>
-                <div>
-                    <h4>Redes Sociales</h4>
-                    <ul>
-                        <li><a href="#">Facebook</a></li>
-                        <li><a href="#">Instagram</a></li>
-                    </ul>
-                </div>
-            </div>
-            <p>Todos los derechos reservados</p>
-        </footer>
+        <?php include 'includes/footer.php'; ?>
     </div>
     <script src="assets/js/estrellas.js"></script>
 </body>

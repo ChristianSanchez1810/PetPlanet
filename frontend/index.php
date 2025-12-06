@@ -76,35 +76,20 @@ $resultado = mysqli_query($conn, $query); ?>
             <section class="categorias">
                 <h2 class="hero">Comprar por mascota</h2>
                 <div class="categorias-contenedor">
-                    <a href="#" class="tarjeta-categoria">
+                    <a href="perros.php" class="tarjeta-categoria">
                         <h3>Perro</h3>
                     </a>
-                    <a href="#" class="tarjeta-categoria">
+                    <a href="gatos.php" class="tarjeta-categoria">
                         <h3>Gato</h3>
                     </a>
-                    <a href="#" class="tarjeta-categoria">
+                    <a href="hamsters.php" class="tarjeta-categoria">
                         <h3>Hamster</h3>
                     </a>
                 </div>
             </section>
         </main>
         
-        <footer>
-            <div>
-                <ul>
-                    <li><a href="#">Sobre nosotros</a></li>
-                    <li><a href="#">Contacto</a></li>
-                </ul>
-                <div>
-                    <h4>Redes Sociales</h4>
-                    <ul>
-                        <li><a href="#">Facebook</a></li>
-                        <li><a href="#">Instagram</a></li>
-                    </ul>
-                </div>
-            </div>
-            <p>Todos los derechos reservados</p>
-        </footer>
+        <?php include 'includes/footer.php'; ?>
     </div>
         <script src="assets/js/main.js"></script>
         <script src="assets/js/estrellas.js"></script>

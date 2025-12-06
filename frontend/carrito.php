@@ -1,7 +1,9 @@
-<?php session_start();
+<?php 
+session_start();
+// 1. INCLUIMOS LA CONEXIÓN A LA BD (Necesaria para consultar el stock)
+include 'includes/db.php'; 
 
 $total_compra = 0;
-
 ?>
 
 <!DOCTYPE html>
@@ -43,6 +45,17 @@ $total_compra = 0;
                                 foreach ($_SESSION['carrito'] as $id => $producto):
                                     $subtotal = $producto['precio'] * $producto['cantidad'];
                                     $total_compra += $subtotal;
+
+                                    $query_stock = "SELECT stock FROM productos WHERE id = $id";
+                                    $res_stock = mysqli_query($conn, $query_stock);
+                                    
+                                    
+                                    if ($row_stock = mysqli_fetch_assoc($res_stock)) {
+                                        $stock_disponible = $row_stock['stock'];
+                                    } else {
+                                        $stock_disponible = 0;
+                                    }
+                                    
                                     ?>
                                     <tr class="fila-producto">
                                         <td>
@@ -57,8 +70,16 @@ $total_compra = 0;
                                         </td>
 
                                         <td>
-                                            <input type="number" class="input-cantidad" data-id="<?php echo $id; ?>"
-                                                value="<?php echo $producto['cantidad']; ?>" min="1" style="width: 50px;">
+                                            <input type="number" 
+                                                   class="input-cantidad" 
+                                                   data-id="<?php echo $id; ?>"
+                                                   value="<?php echo $producto['cantidad']; ?>" 
+                                                   min="1" 
+                                                   max="<?php echo $stock_disponible; ?>" 
+                                                   style="width: 50px;">
+                                            
+                                            <br>
+                                            <small style="color: #ccc; font-size: 0.8rem;">Stock: <?php echo $stock_disponible; ?></small>
                                         </td>
 
                                         <td class="lbl-subtotal">$<?php echo $subtotal; ?></td>
@@ -103,22 +124,7 @@ $total_compra = 0;
             </div>
         </main>
 
-        <footer>
-            <div>
-                <ul>
-                    <li><a href="#">Sobre nosotros</a></li>
-                    <li><a href="#">Contacto</a></li>
-                </ul>
-                <div>
-                    <h4>Redes Sociales</h4>
-                    <ul>
-                        <li><a href="#">Facebook</a></li>
-                        <li><a href="#">Instagram</a></li>
-                    </ul>
-                </div>
-            </div>
-            <p>Todos los derechos reservados</p>
-        </footer>
+        <?php include 'includes/footer.php'; ?>
 
         <script>
             document.addEventListener("DOMContentLoaded", function () {
@@ -127,53 +133,67 @@ $total_compra = 0;
                 
                 inputs.forEach(input => {
                     input.addEventListener('change', function () {
-                    actualizarMontos(this);
+                        actualizarMontos(this);
+                    });
+                    input.addEventListener('input', function () {
+                        actualizarMontos(this);
+                    });
                 });
-                input.addEventListener('input', function () {
-                    actualizarMontos(this);
-                });
-            });
 
-            function actualizarMontos(input) {
-                const fila = input.closest('.fila-producto');
-                const precio = parseFloat(fila.querySelector('.precio-unitario').dataset.precio);
-                const cantidad = parseInt(input.value);
-                const idProducto = input.dataset.id;
-
-                if (cantidad < 1) return;
-                const nuevoSubtotal = precio * cantidad;
-                fila.querySelector('.lbl-subtotal').innerText = '$' + nuevoSubtotal.toFixed(2);
-                recalcularTotalCarrito();
-                actualizarSesionPHP(idProducto, cantidad);
-            }
-
-            function recalcularTotalCarrito() {
-                let totalGeneral = 0;
-                document.querySelectorAll('.fila-producto').forEach(fila => {
+                function actualizarMontos(input) {
+                    const fila = input.closest('.fila-producto');
                     const precio = parseFloat(fila.querySelector('.precio-unitario').dataset.precio);
-                    const cantidad = parseInt(fila.querySelector('.input-cantidad').value);
-                    totalGeneral += (precio * cantidad);
-                });
-                document.getElementById('resumen-subtotal').innerText = '$' + totalGeneral.toFixed(2);
-                document.getElementById('resumen-total').innerText = '$' + totalGeneral.toFixed(2);
-            }
-            
-            function actualizarSesionPHP(id, cantidad) {
+                    let cantidad = parseInt(input.value);
+                    const idProducto = input.dataset.id;
+                    
+                    const maxStock = parseInt(input.getAttribute('max'));
 
-                fetch('actualizar_carrito.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: `id=${id}&cantidad=${cantidad}`
-                })
-                .then(response => console.log('Carrito actualizado en servidor'))
-                .catch(error => console.error('Error:', error));
-            }
-        });
+                    
+                    if (cantidad < 1) {
+                        cantidad = 1;
+                        input.value = 1;
+                    }
+
+
+                    if (cantidad > maxStock) {
+                        alert("¡Ups! Solo tenemos " + maxStock + " unidades disponibles.");
+                        cantidad = maxStock;
+                        input.value = maxStock; 
+                    }
+
+
+                    const nuevoSubtotal = precio * cantidad;
+                    fila.querySelector('.lbl-subtotal').innerText = '$' + nuevoSubtotal.toFixed(2);
+                    
+                    recalcularTotalCarrito();
+                    actualizarSesionPHP(idProducto, cantidad);
+                }
+
+                function recalcularTotalCarrito() {
+                    let totalGeneral = 0;
+                    document.querySelectorAll('.fila-producto').forEach(fila => {
+                        const precio = parseFloat(fila.querySelector('.precio-unitario').dataset.precio);
+                        const cantidad = parseInt(fila.querySelector('.input-cantidad').value);
+                        totalGeneral += (precio * cantidad);
+                    });
+                    document.getElementById('resumen-subtotal').innerText = '$' + totalGeneral.toFixed(2);
+                    document.getElementById('resumen-total').innerText = '$' + totalGeneral.toFixed(2);
+                }
+                
+                function actualizarSesionPHP(id, cantidad) {
+                    fetch('actualizar_carrito.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: `id=${id}&cantidad=${cantidad}`
+                    })
+                    .then(response => console.log('Carrito actualizado en servidor'))
+                    .catch(error => console.error('Error:', error));
+                }
+            });
         </script>
-    <script src="assets/js/estrellas.js"></script>
-</div>
+    </div>
 </body>
 
 </html>
